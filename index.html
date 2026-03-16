@@ -1,134 +1,1188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kavano – professional IT consulting and software solutions." />
-  <title>Kavano</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kavano — AI Driven IT Solutions</title>
+    <meta name="description" content="Kavano helps companies integrate AI into real workflows. 30+ years of engineering experience. Book a discovery call.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --gold:   #F2A93B;
+            --cream:  #F5EDE3;
+            --teal:   #6D9E9B;
+            --coral:  #E87060;
+            --dark:   #181310;
+            --text:   #181310;
+            --muted:  #6B6460;
+            --border: rgba(24, 19, 16, 0.10);
+
+            --font-head: 'Inter', sans-serif;
+            --font-body: 'Source Sans 3', sans-serif;
+            --max:  1180px;
+            --pad:  48px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            background: #fff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── NAV ─────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 26px var(--pad);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.4s, padding 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            padding: 16px var(--pad);
+            border-color: var(--border);
+        }
+
+        .nav-logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 17px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .nav-logo .ac { color: var(--teal); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--dark); }
+
+        .nav-cta {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: #fff;
+            background: var(--coral);
+            padding: 10px 22px;
+            border-radius: 2px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .nav-cta:hover { background: #c95042; transform: translateY(-1px); }
+        .nav-cta:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+
+        /* ─── HERO ────────────────────────────────────── */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            background: var(--cream);
+        }
+
+        .hero-content {
+            padding: 140px var(--pad) 100px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .eyebrow {
+            font-family: var(--font-head);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .eyebrow::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        .hero h1 {
+            font-family: var(--font-head);
+            font-size: clamp(36px, 4vw, 58px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--dark);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--teal);
+        }
+
+        .hero-sub {
+            font-family: var(--font-head);
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 14px;
+        }
+
+        .hero-desc {
+            font-size: 17px;
+            line-height: 1.75;
+            color: var(--muted);
+            max-width: 460px;
+            margin-bottom: 48px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            font-family: var(--font-head);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #fff;
+            background: var(--coral);
+            padding: 15px 34px;
+            border-radius: 2px;
+            text-decoration: none;
+            box-shadow: 0 4px 22px rgba(232, 112, 96, 0.32);
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #c95042;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(232, 112, 96, 0.44);
+        }
+
+        .btn-primary:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+
+        .hero-note {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* Hero right dark panel */
+        .hero-panel {
+            background: var(--dark);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(109, 158, 155, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(109, 158, 155, 0.06) 1px, transparent 1px);
+            background-size: 44px 44px;
+        }
+
+        .hero-panel::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--teal) 40%, transparent);
+        }
+
+        .hero-k-bg {
+            position: absolute;
+            bottom: -40px;
+            right: -20px;
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 380px;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.025);
+            user-select: none;
+            pointer-events: none;
+            letter-spacing: -0.05em;
+        }
+
+        .stat-cards {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 48px 40px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 22px 26px;
+        }
+
+        .stat-card:nth-child(1) { animation: float1 6s ease-in-out infinite; }
+        .stat-card:nth-child(2) { animation: float2 7.5s ease-in-out infinite; margin-left: 36px; }
+        .stat-card:nth-child(3) { animation: float3 5.5s ease-in-out infinite; }
+
+        @keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        @keyframes float3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+        .stat-val {
+            font-family: var(--font-head);
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-lbl {
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        /* ─── SHARED SECTION ──────────────────────────── */
+        section { padding: 110px 0; }
+
+        .container {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 var(--pad);
+        }
+
+        .section-label {
+            font-family: var(--font-head);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 22px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        .section-title {
+            font-family: var(--font-head);
+            font-size: clamp(26px, 3vw, 40px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            color: var(--dark);
+            margin-bottom: 24px;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── PROBLEM ─────────────────────────────────── */
+        .problem {
+            background: var(--dark);
+            padding: 100px 0;
+        }
+
+        .problem .section-label { color: var(--teal); }
+        .problem .section-title { color: #fff; }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .problem-statement {
+            font-family: var(--font-head);
+            font-size: 21px;
+            font-weight: 300;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .problem-statement strong {
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .problem-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .problem-list li {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            font-size: 16px;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .problem-list li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--teal);
+            flex-shrink: 0;
+            margin-top: 9px;
+        }
+
+        /* ─── SOLUTIONS ───────────────────────────────── */
+        .solutions { background: #fff; }
+
+        .solutions-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: end;
+            margin-bottom: 64px;
+        }
+
+        .solutions-intro {
+            font-size: 17px;
+            line-height: 1.75;
+            color: var(--muted);
+        }
+
+        .tiers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .tier {
+            background: #fff;
+            padding: 44px 36px;
+            transition: background 0.3s;
+        }
+
+        .tier:hover { background: var(--cream); }
+
+        .tier-num {
+            font-family: var(--font-head);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .tier-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 12px;
+            border-radius: 2px;
+            background: var(--cream);
+            margin-bottom: 22px;
+        }
+
+        .tier-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .tier-1 .tier-dot { background: var(--teal); }
+        .tier-2 .tier-dot { background: var(--gold); }
+        .tier-3 .tier-dot { background: var(--coral); }
+
+        .tier-tag-text {
+            font-family: var(--font-head);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--dark);
+        }
+
+        .tier h3 {
+            font-family: var(--font-head);
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .tier-stack {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .tier-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .tier-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .tier-list li {
+            font-size: 14px;
+            color: var(--muted);
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .tier-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-size: 11px;
+            top: 2px;
+        }
+
+        /* ─── EXPERIENCE ──────────────────────────────── */
+        .experience {
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-bg {
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--font-head);
+            font-size: 340px;
+            font-weight: 800;
+            line-height: 1;
+            color: rgba(109, 158, 155, 0.07);
+            pointer-events: none;
+            user-select: none;
+            letter-spacing: -0.04em;
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 72px;
+            align-items: center;
+        }
+
+        .exp-number {
+            font-family: var(--font-head);
+            font-size: clamp(80px, 11vw, 148px);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: var(--dark);
+            white-space: nowrap;
+        }
+
+        .exp-number sup {
+            font-size: 0.35em;
+            vertical-align: top;
+            margin-top: 0.18em;
+            color: var(--teal);
+        }
+
+        .exp-title {
+            font-family: var(--font-head);
+            font-size: clamp(22px, 2.5vw, 34px);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+            color: var(--dark);
+            margin-bottom: 18px;
+        }
+
+        .exp-text {
+            font-size: 17px;
+            line-height: 1.75;
+            color: var(--muted);
+            margin-bottom: 32px;
+            max-width: 520px;
+        }
+
+        .exp-pillars {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .pillar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-family: var(--font-head);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .pillar::before {
+            content: '';
+            width: 18px;
+            height: 1px;
+            background: var(--teal);
+            flex-shrink: 0;
+        }
+
+        /* ─── PROCESS ─────────────────────────────────── */
+        .process { background: #fff; }
+
+        .process-header { margin-bottom: 72px; }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 27px;
+            left: calc(12.5% + 2px);
+            right: calc(12.5% + 2px);
+            height: 1px;
+            background: var(--border);
+        }
+
+        .step { padding: 0 20px; }
+
+        .step-dot {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+            transition: border-color 0.25s, background 0.25s;
+        }
+
+        .step:hover .step-dot {
+            border-color: var(--teal);
+            background: var(--cream);
+        }
+
+        .step-num {
+            font-family: var(--font-head);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .step h3 {
+            font-family: var(--font-head);
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--muted);
+        }
+
+        /* ─── CTA ─────────────────────────────────────── */
+        .cta-section {
+            background: var(--dark);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(109, 158, 155, 0.1) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .cta-section .section-label {
+            justify-content: center;
+            color: var(--teal);
+        }
+
+        .cta-section .section-label::before { display: none; }
+
+        .cta-title {
+            font-family: var(--font-head);
+            font-size: clamp(28px, 4vw, 50px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            color: #fff;
+            margin-bottom: 18px;
+        }
+
+        .cta-sub {
+            font-size: 18px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.48);
+            max-width: 480px;
+            margin: 0 auto 44px;
+        }
+
+        .cta-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            font-family: var(--font-head);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #fff;
+            background: var(--coral);
+            padding: 17px 42px;
+            border-radius: 2px;
+            text-decoration: none;
+            box-shadow: 0 4px 28px rgba(232, 112, 96, 0.35);
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+        }
+
+        .btn-cta:hover {
+            background: #c95042;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(232, 112, 96, 0.5);
+        }
+
+        .btn-cta:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+
+        .cta-note {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.28);
+        }
+
+        /* ─── FOOTER ──────────────────────────────────── */
+        footer {
+            background: #0F0C0A;
+            padding: 64px 0 36px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-inner {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 var(--pad);
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 52px;
+            gap: 48px;
+        }
+
+        .footer-brand { max-width: 260px; }
+
+        .footer-logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 17px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .footer-logo .ac { color: var(--teal); }
+
+        .footer-tagline {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.32);
+            line-height: 1.65;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 72px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-head);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.28);
+            margin-bottom: 18px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .footer-col a {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover { color: #fff; }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-location {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .footer-location::before {
+            content: '◎';
+            color: var(--teal);
+            font-size: 11px;
+        }
+
+        /* ─── RESPONSIVE ──────────────────────────────── */
+        @media (max-width: 1024px) {
+            :root { --pad: 32px; }
+
+            nav { padding: 20px var(--pad); }
+            nav.scrolled { padding: 14px var(--pad); }
+            .nav-links { display: none; }
+
+            .hero { grid-template-columns: 1fr; }
+            .hero-content { padding: 110px var(--pad) 60px; max-width: 100%; }
+            .hero-panel { min-height: 300px; }
+            .hero-k-bg { font-size: 220px; }
+
+            .problem-grid,
+            .solutions-intro-grid,
+            .exp-grid { grid-template-columns: 1fr; gap: 44px; }
+
+            .tiers { grid-template-columns: 1fr; }
+
+            .process-steps {
+                grid-template-columns: 1fr 1fr;
+                gap: 44px;
+            }
+
+            .process-steps::before { display: none; }
+
+            .footer-top { flex-direction: column; }
+            .footer-nav { gap: 40px; }
+        }
+
+        @media (max-width: 640px) {
+            section { padding: 72px 0; }
+
+            .hero-actions { flex-direction: column; align-items: flex-start; }
+            .process-steps { grid-template-columns: 1fr; }
+            .footer-nav { flex-direction: column; gap: 28px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .cta-actions { flex-direction: column; }
+            .exp-number { font-size: 80px; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <header class="site-header">
-    <nav class="nav container">
-      <a href="#" class="nav-logo">Kavano</a>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <!-- NAV -->
+    <nav id="nav">
+        <a href="#" class="nav-logo">KAV<span class="ac">A</span>NO</a>
+        <ul class="nav-links">
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#process">Process</a></li>
+        </ul>
+        <a href="https://calendly.com/k-van-oostveen/30min" class="nav-cta" target="_blank" rel="noopener">Book a call</a>
     </nav>
-  </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-content">
-      <h1>Smart solutions<br />for your business</h1>
-      <p class="hero-sub">
-        Kavano delivers pragmatic IT consulting and tailored software
-        development to help organisations grow and innovate.
-      </p>
-      <a href="#contact" class="btn btn-primary">Get in touch</a>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section section-light">
-    <div class="container">
-      <h2 class="section-title">About Kavano</h2>
-      <p class="section-text">
-        Founded with a passion for technology and a focus on results, Kavano
-        partners with companies of all sizes to design, build, and maintain
-        the digital products that power their operations. We combine deep
-        technical expertise with clear communication to make sure every
-        project stays on track and on budget.
-      </p>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" class="section section-dark">
-    <div class="container">
-      <h2 class="section-title">What we do</h2>
-      <div class="cards">
-
-        <div class="card">
-          <div class="card-icon">&#128187;</div>
-          <h3>Software Development</h3>
-          <p>
-            Custom web and back-end applications built to spec, tested
-            rigorously, and delivered on time.
-          </p>
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="eyebrow">AI Driven IT Solutions</div>
+            <h1>Intelligent software.<br>Built for <em>real workflows</em>.</h1>
+            <p class="hero-sub">AI integration that works in production.</p>
+            <p class="hero-desc">
+                30+ years of engineering experience — from architecture to deployment.
+                I help companies integrate AI into their operations and build
+                the software that runs them.
+            </p>
+            <div class="hero-actions">
+                <a href="https://calendly.com/k-van-oostveen/30min" class="btn-primary" target="_blank" rel="noopener">
+                    Book a discovery call
+                </a>
+                <span class="hero-note">30 minutes &middot; No obligation</span>
+            </div>
         </div>
-
-        <div class="card">
-          <div class="card-icon">&#9729;</div>
-          <h3>Cloud &amp; Infrastructure</h3>
-          <p>
-            Architecture design, migration, and ongoing management across
-            AWS, Azure, and on-premises environments.
-          </p>
+        <div class="hero-panel">
+            <div class="hero-k-bg">K</div>
+            <div class="stat-cards">
+                <div class="stat-card">
+                    <div class="stat-val">30+</div>
+                    <div class="stat-lbl">Years experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">End&#8209;to&#8209;end</div>
+                    <div class="stat-lbl">Full lifecycle delivery</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">3 tiers</div>
+                    <div class="stat-lbl">Right tool for the problem</div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="card">
-          <div class="card-icon">&#128202;</div>
-          <h3>IT Consulting</h3>
-          <p>
-            Strategic advice that translates business goals into a coherent
-            technology roadmap.
-          </p>
+    <!-- PROBLEM -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="problem-grid reveal">
+                <div>
+                    <div class="section-label">The challenge</div>
+                    <h2 class="section-title">Most companies want AI.<br>Few know how to integrate it.</h2>
+                    <p class="problem-statement">
+                        The technology is available. The potential is clear. But turning
+                        <strong>AI capabilities into working business software</strong>
+                        requires engineering depth that most teams don't have in-house.
+                    </p>
+                </div>
+                <ul class="problem-list">
+                    <li>Existing workflows are complex and fragile — hard to change without breaking things</li>
+                    <li>AI tools evolve fast — it's unclear what to adopt and when</li>
+                    <li>Internal teams lack the time or experience to architect AI-first systems</li>
+                    <li>Pilots succeed in demos but fail to reach production</li>
+                    <li>Choosing the wrong stack leads to expensive rework down the line</li>
+                </ul>
+            </div>
         </div>
+    </section>
 
-        <div class="card">
-          <div class="card-icon">&#128274;</div>
-          <h3>Security &amp; Compliance</h3>
-          <p>
-            Risk assessments, code reviews, and process improvements to keep
-            your systems and data safe.
-          </p>
+    <!-- SOLUTIONS -->
+    <section class="solutions" id="solutions">
+        <div class="container">
+            <div class="solutions-intro-grid reveal">
+                <div>
+                    <div class="section-label">Solutions</div>
+                    <h2 class="section-title">The right tool<br>for the right problem.</h2>
+                </div>
+                <p class="solutions-intro">
+                    There is no universal stack for AI integration. The complexity of your
+                    situation determines the right approach — from lightweight automation
+                    to enterprise-grade platforms built for scale.
+                </p>
+            </div>
+
+            <div class="tiers reveal">
+                <div class="tier tier-1">
+                    <div class="tier-num">Tier 01</div>
+                    <div class="tier-tag">
+                        <div class="tier-dot"></div>
+                        <span class="tier-tag-text">n8n</span>
+                    </div>
+                    <h3>Office Workflow Automation</h3>
+                    <div class="tier-stack">Low-code &middot; Fast deployment</div>
+                    <p class="tier-desc">
+                        Automate repetitive office tasks without building custom software.
+                        Ideal for teams that need results fast, without heavy infrastructure.
+                    </p>
+                    <ul class="tier-list">
+                        <li>Email workflows &amp; notifications</li>
+                        <li>Data synchronisation between systems</li>
+                        <li>Internal reporting automation</li>
+                        <li>Document processing pipelines</li>
+                    </ul>
+                </div>
+
+                <div class="tier tier-2">
+                    <div class="tier-num">Tier 02</div>
+                    <div class="tier-tag">
+                        <div class="tier-dot"></div>
+                        <span class="tier-tag-text">Python &middot; React</span>
+                    </div>
+                    <h3>Business Workflow Applications</h3>
+                    <div class="tier-stack">Custom software &middot; Full control</div>
+                    <p class="tier-desc">
+                        Custom business tools and workflow systems built around your
+                        specific processes, data, and team structure.
+                    </p>
+                    <ul class="tier-list">
+                        <li>Internal platforms &amp; portals</li>
+                        <li>Operational dashboards</li>
+                        <li>AI-assisted workflow tools</li>
+                        <li>Process automation engines</li>
+                    </ul>
+                </div>
+
+                <div class="tier tier-3">
+                    <div class="tier-num">Tier 03</div>
+                    <div class="tier-tag">
+                        <div class="tier-dot"></div>
+                        <span class="tier-tag-text">.NET &middot; Azure &middot; AI</span>
+                    </div>
+                    <h3>Enterprise &amp; SaaS Platforms</h3>
+                    <div class="tier-stack">Cloud-native &middot; Scalable</div>
+                    <p class="tier-desc">
+                        Scalable SaaS products and enterprise systems designed for
+                        production loads, compliance, and long-term maintainability.
+                    </p>
+                    <ul class="tier-list">
+                        <li>SaaS platform development</li>
+                        <li>AI-enabled product features</li>
+                        <li>Cloud-native architecture on Azure</li>
+                        <li>Enterprise system integration</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </section>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section section-light">
-    <div class="container">
-      <h2 class="section-title">Contact us</h2>
-      <p class="section-text">
-        Ready to start a conversation? Reach out and we will get back to you
-        within one business day.
-      </p>
-      <div class="contact-details">
-        <div class="contact-item">
-          <span class="contact-icon">&#9993;</span>
-          <a href="mailto:info@kavano.nl" class="contact-link">info@kavano.nl</a>
+    <!-- EXPERIENCE -->
+    <section class="experience" id="experience">
+        <div class="exp-bg">30</div>
+        <div class="container">
+            <div class="exp-grid reveal">
+                <div class="exp-number">30<sup>+</sup></div>
+                <div>
+                    <h2 class="exp-title">Years building business-critical software.</h2>
+                    <p class="exp-text">
+                        From early enterprise systems to modern AI-integrated platforms,
+                        I've spent three decades architecting and delivering software that
+                        businesses depend on. That depth means fewer surprises, better
+                        architectural decisions, and systems built to last.
+                    </p>
+                    <div class="exp-pillars">
+                        <div class="pillar">Full lifecycle delivery — from idea to production</div>
+                        <div class="pillar">Architecture-first approach to every engagement</div>
+                        <div class="pillar">AI integration across all complexity tiers</div>
+                        <div class="pillar">One point of contact — no handoffs, no gaps</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="contact-item">
-          <span class="contact-icon">&#128205;</span>
-          <span>Amsterdam, The Netherlands</span>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="process-header reveal">
+                <div class="section-label">How we work</div>
+                <h2 class="section-title">A clear process.<br>No surprises.</h2>
+            </div>
+            <div class="process-steps reveal">
+                <div class="step">
+                    <div class="step-dot"><span class="step-num">01</span></div>
+                    <h3>Discovery call</h3>
+                    <p>30 minutes to understand your business, workflows, and where AI or automation creates the most value.</p>
+                </div>
+                <div class="step">
+                    <div class="step-dot"><span class="step-num">02</span></div>
+                    <h3>Architecture proposal</h3>
+                    <p>A concrete proposal with the right technology tier, scope, timeline, and investment — before any commitment.</p>
+                </div>
+                <div class="step">
+                    <div class="step-dot"><span class="step-num">03</span></div>
+                    <h3>Implementation</h3>
+                    <p>Hands-on development with regular checkpoints. You stay informed throughout — no black-box delivery.</p>
+                </div>
+                <div class="step">
+                    <div class="step-dot"><span class="step-num">04</span></div>
+                    <h3>Production deployment</h3>
+                    <p>Full deployment, documentation, and handover. Systems built to run reliably without me being there.</p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="contact-cta">
-        <a href="mailto:info@kavano.nl" class="btn btn-primary">Send us an email</a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <span class="footer-logo">Kavano</span>
-      <span class="footer-copy">&copy; <span id="year"></span> Kavano. All rights reserved.</span>
-      <span class="footer-location">Amsterdam, The Netherlands</span>
-    </div>
-  </footer>
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Get started</div>
+                <h2 class="cta-title">Ready to build something<br>that actually works?</h2>
+                <p class="cta-sub">
+                    Start with a 30-minute discovery call. No pitch, no pressure —
+                    a direct conversation about your situation and what's possible.
+                </p>
+                <div class="cta-actions">
+                    <a href="https://calendly.com/k-van-oostveen/30min" class="btn-cta" target="_blank" rel="noopener">
+                        Book a discovery call
+                    </a>
+                    <span class="cta-note">Free &middot; 30 minutes &middot; Video call</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">KAV<span class="ac">A</span>NO</a>
+                    <p class="footer-tagline">AI Driven IT Solutions.<br>Amsterdam, Netherlands.</p>
+                </div>
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <div class="footer-col">
+                        <h4>Solutions</h4>
+                        <ul>
+                            <li><a href="#solutions">Workflow Automation</a></li>
+                            <li><a href="#solutions">Business Applications</a></li>
+                            <li><a href="#solutions">Enterprise Platforms</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#experience">Experience</a></li>
+                            <li><a href="#process">Process</a></li>
+                            <li><a href="https://calendly.com/k-van-oostveen/30min" target="_blank" rel="noopener">Book a call</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2025 Kavano. All rights reserved.</p>
+                <p class="footer-location">Amsterdam, Netherlands</p>
+            </div>
+        </div>
+    </footer>
 
+    <script>
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
+        }, { passive: true });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
