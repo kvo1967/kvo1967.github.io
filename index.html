@@ -448,6 +448,18 @@
             color: rgba(255,255,255,0.3);
         }
 
+        .footer-privacy {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-privacy:hover { color: #fff; }
+        .footer-privacy:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
         .footer-links {
             display: flex;
             gap: 48px;
@@ -684,6 +696,7 @@
             <div>
                 <a href="#" class="footer-logo">KAV<span>A</span>NO</a>
                 <p class="footer-tag">AI Driven IT Solutions<br>Alkmaar, Netherlands</p>
+                <a href="privacy.html" class="footer-privacy">Privacy Policy</a>
             </div>
             <div class="footer-links">
                 <div class="footer-col">
